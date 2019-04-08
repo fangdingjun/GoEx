@@ -6,7 +6,9 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/fangdingjun/GoEx"
+	"github.com/stretchr/testify/require"
+
+	goex "github.com/fangdingjun/GoEx"
 )
 
 const (
@@ -18,18 +20,22 @@ var htb *Hitbtc
 
 func init() {
 	htb = New(http.DefaultClient, PubKey, SecretKey)
-	pairs, err := htb.GetSymbols()
-	if err != nil {
-		panic(err)
-	}
+}
 
-	for _, pair := range pairs {
-		goex.RegisterExSymbol(htb.GetExchangeName(), pair)
-	}
+func TestHitbtc_GetSymbols(t *testing.T) {
+	t.Log(htb.GetSymbols())
+}
+
+func TestHitbtc_adaptSymbolToCurrencyPair(t *testing.T) {
+	t.Log(htb.adaptSymbolToCurrencyPair("DOGEBTC").String() == "DOGE_BTC")
+	t.Log(htb.adaptSymbolToCurrencyPair("BTCGUSD").String() == "BTC_GUSD")
+	t.Log(htb.adaptSymbolToCurrencyPair("btctusd").String() == "BTC_TUSD")
+	t.Log(htb.adaptSymbolToCurrencyPair("BTCUSDC").String() == "BTC_USDC")
+	t.Log(htb.adaptSymbolToCurrencyPair("ETHEOS").String() == "ETH_EOS")
 }
 
 func TestGetTicker(t *testing.T) {
-	res, err := htb.GetTicker(YCC_BTC)
+	res, err := htb.GetTicker(goex.BCC_USD)
 	require := require.New(t)
 	require.Nil(err)
 	t.Log(res)

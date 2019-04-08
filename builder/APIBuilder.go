@@ -2,37 +2,39 @@ package builder
 
 import (
 	"context"
+	"fmt"
+	"net"
+	"net/http"
+	"net/url"
+	"time"
+
 	. "github.com/fangdingjun/GoEx"
+	"github.com/fangdingjun/GoEx/bigone"
 	"github.com/fangdingjun/GoEx/binance"
 	"github.com/fangdingjun/GoEx/bitfinex"
 	"github.com/fangdingjun/GoEx/bithumb"
 	"github.com/fangdingjun/GoEx/bitstamp"
 	"github.com/fangdingjun/GoEx/bittrex"
+	"github.com/fangdingjun/GoEx/coin58"
 	"github.com/fangdingjun/GoEx/coinex"
+	"github.com/fangdingjun/GoEx/fcoin"
 	"github.com/fangdingjun/GoEx/gateio"
 	"github.com/fangdingjun/GoEx/gdax"
+	"github.com/fangdingjun/GoEx/hitbtc"
 	"github.com/fangdingjun/GoEx/huobi"
 	"github.com/fangdingjun/GoEx/kraken"
 	"github.com/fangdingjun/GoEx/okcoin"
 	"github.com/fangdingjun/GoEx/poloniex"
-	"github.com/fangdingjun/GoEx/wex"
 	"github.com/fangdingjun/GoEx/zb"
-	"net"
-	"net/http"
-	"net/url"
-	"time"
-	"github.com/fangdingjun/GoEx/fcoin"
-	"github.com/fangdingjun/GoEx/coin58"
-	"github.com/fangdingjun/GoEx/bigone"
-	"github.com/fangdingjun/GoEx/hitbtc"
 )
 
 type APIBuilder struct {
-	client      *http.Client
-	httpTimeout time.Duration
-	apiKey      string
-	secretkey   string
-	clientId    string
+	client        *http.Client
+	httpTimeout   time.Duration
+	apiKey        string
+	secretkey     string
+	clientId      string
+	apiPassphrase string
 }
 
 func NewAPIBuilder() (builder *APIBuilder) {
@@ -60,9 +62,12 @@ func (builder *APIBuilder) APISecretkey(key string) (_builder *APIBuilder) {
 }
 
 func (builder *APIBuilder) HttpProxy(proxyUrl string) (_builder *APIBuilder) {
+	if proxyUrl == "" {
+		return builder
+	}
 	proxy, err := url.Parse(proxyUrl)
 	if err != nil {
-		return
+		return builder
 	}
 	transport := builder.client.Transport.(*http.Transport)
 	transport.Proxy = http.ProxyURL(proxy)
@@ -88,11 +93,16 @@ func (builder *APIBuilder) HttpTimeout(timeout time.Duration) (_builder *APIBuil
 	return builder
 }
 
+func (builder *APIBuilder) ApiPassphrase(apiPassphrase string) (_builder *APIBuilder) {
+	builder.apiPassphrase = apiPassphrase
+	return builder
+}
+
 func (builder *APIBuilder) Build(exName string) (api API) {
 	var _api API
 	switch exName {
-	case OKCOIN_CN:
-		_api = okcoin.New(builder.client, builder.apiKey, builder.secretkey)
+	//case OKCOIN_CN:
+	//	_api = okcoin.New(builder.client, builder.apiKey, builder.secretkey)
 	case POLONIEX:
 		_api = poloniex.New(builder.client, builder.apiKey, builder.secretkey)
 	case OKCOIN_COM:
@@ -117,8 +127,6 @@ func (builder *APIBuilder) Build(exName string) (api API) {
 		_api = gdax.New(builder.client, builder.apiKey, builder.secretkey)
 	case GATEIO:
 		_api = gateio.New(builder.client, builder.apiKey, builder.secretkey)
-	case WEX_NZ:
-		_api = wex.New(builder.client, builder.apiKey, builder.secretkey)
 	case ZB:
 		_api = zb.New(builder.client, builder.apiKey, builder.secretkey)
 	case COINEX:
@@ -136,4 +144,17 @@ func (builder *APIBuilder) Build(exName string) (api API) {
 
 	}
 	return _api
+}
+
+func (builder *APIBuilder) BuildFuture(exName string) (api FutureRestAPI) {
+	switch exName {
+	case OKEX_FUTURE:
+		return okcoin.NewOKEx(builder.client, builder.apiKey, builder.secretkey)
+	case HBDM:
+		return huobi.NewHbdm(&APIConfig{HttpClient: builder.client, ApiKey: builder.apiKey, ApiSecretKey: builder.secretkey})
+	case OKEX_SWAP:
+		return okex.NewOKExSwap(&APIConfig{HttpClient: builder.client, Endpoint: "https://www.okex.com", ApiKey: builder.apiKey, ApiSecretKey: builder.secretkey, ApiPassphrase: builder.apiPassphrase})
+	default:
+		panic(fmt.Sprintf("%s not support", exName))
+	}
 }
