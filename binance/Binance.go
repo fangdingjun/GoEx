@@ -4,12 +4,13 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	. "github.com/fangdingjun/GoEx"
 	"log"
 	"net/http"
 	"net/url"
 	"strconv"
 	"time"
+
+	. "github.com/fangdingjun/GoEx"
 )
 
 const (

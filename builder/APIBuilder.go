@@ -24,6 +24,7 @@ import (
 	"github.com/fangdingjun/GoEx/huobi"
 	"github.com/fangdingjun/GoEx/kraken"
 	"github.com/fangdingjun/GoEx/okcoin"
+	"github.com/fangdingjun/GoEx/okex"
 	"github.com/fangdingjun/GoEx/poloniex"
 	"github.com/fangdingjun/GoEx/zb"
 )

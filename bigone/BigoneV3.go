@@ -8,8 +8,8 @@ import (
 	"net/url"
 	"time"
 
+	goex "github.com/fangdingjun/GoEx"
 	"github.com/google/uuid"
-	"github.com/nntaoli-project/GoEx"
 	"github.com/nubo/jwt"
 )
 
