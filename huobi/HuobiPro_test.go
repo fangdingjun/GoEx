@@ -1,7 +1,7 @@
 package huobi
 
 import (
-	"github.com/nntaoli-project/GoEx"
+	"github.com/fangdingjun/GoEx"
 	"github.com/stretchr/testify/assert"
 	"net"
 	"net/http"

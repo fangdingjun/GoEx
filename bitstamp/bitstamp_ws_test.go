@@ -1,7 +1,7 @@
 package bitstamp
 
 import (
-	"github.com/nntaoli-project/GoEx"
+	"github.com/fangdingjun/GoEx"
 	"testing"
 	"time"
 	"log"

@@ -3,7 +3,7 @@ package okcoin
 import (
 	"testing"
 	"net/http"
-	"github.com/nntaoli-project/GoEx"
+	"github.com/fangdingjun/GoEx"
 	"log"
 	"time"
 )

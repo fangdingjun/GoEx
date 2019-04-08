@@ -8,7 +8,7 @@ import (
 	"log"
 	"time"
 
-	"github.com/nntaoli-project/GoEx"
+	"github.com/fangdingjun/GoEx"
 	"github.com/nubo/jwt"
 
 	"github.com/google/uuid"

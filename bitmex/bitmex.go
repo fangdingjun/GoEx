@@ -2,7 +2,7 @@ package bitmex
 
 import (
 	"fmt"
-	. "github.com/nntaoli-project/GoEx"
+	. "github.com/fangdingjun/GoEx"
 	"net/http"
 	"strings"
 	"time"
