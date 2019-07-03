@@ -28,7 +28,7 @@ GoEx项目是为了统一并标准化各个数字资产交易平台的接口而�
 | btcchina.com | Y | Y | 1 |
 | coinbig.com | Y | Y | * |
 
-###安装GoEx库  ``` go get github.com/nntaoli-project/GoEx ```
+###安装GoEx库  ``` go get github.com/fangdingjun/GoEx ```
 
 ### 例子
 ```golang
@@ -36,8 +36,8 @@ GoEx项目是为了统一并标准化各个数字资产交易平台的接口而�
    package main
    
    import (
-   	"github.com/nntaoli-project/GoEx"
-   	"github.com/nntaoli-project/GoEx/builder"
+   	"github.com/fangdingjun/GoEx"
+   	"github.com/fangdingjun/GoEx/builder"
    	"log"
    	"time"
    )
@@ -69,9 +69,9 @@ GoEx项目是为了统一并标准化各个数字资产交易平台的接口而�
 ###websocket 使用例子
 ```golang
 import (
-	"github.com/nntaoli-project/GoEx"
-	"github.com/nntaoli-project/GoEx/huobi"
-	//"github.com/nntaoli-project/GoEx/okcoin"
+	"github.com/fangdingjun/GoEx"
+	"github.com/fangdingjun/GoEx/huobi"
+	//"github.com/fangdingjun/GoEx/okcoin"
 	"log"
 )
 

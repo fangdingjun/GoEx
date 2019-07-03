@@ -2,7 +2,7 @@ package fcoin
 
 import (
 	"fmt"
-	"github.com/nntaoli-project/GoEx"
+	"github.com/fangdingjun/GoEx"
 	"net"
 	"net/http"
 	"net/url"

@@ -8,7 +8,7 @@ import (
 	"testing"
 	"time"
 
-	. "github.com/nntaoli-project/GoEx"
+	. "github.com/fangdingjun/GoEx"
 	"github.com/stretchr/testify/assert"
 )
 
