@@ -44,9 +44,11 @@ GoEx项目是为了统一并标准化各个数字资产交易平台的接口而�
    
    func main() {
    	apiBuilder := builder.NewAPIBuilder().HttpTimeout(5 * time.Second)
+   	//apiBuilder := builder.NewAPIBuilder().HttpTimeout(5 * time.Second).HttpProxy("socks5://127.0.0.1:1080")
    	
    	//build spot api
-   	api := apiBuilder.APIKey("").APISecretkey("").ClientID("123").Build(goex.BITSTAMP)
+   	//api := apiBuilder.APIKey("").APISecretkey("").ClientID("123").Build(goex.BITSTAMP)
+   	api := apiBuilder.APIKey("").APISecretkey("").Build(goex.HUOBI_PRO)
    	log.Println(api.GetExchangeName())
    	log.Println(api.GetTicker(goex.BTC_USD))
    	log.Println(api.GetDepth(2, goex.BTC_USD))
@@ -64,12 +66,41 @@ GoEx项目是为了统一并标准化各个数字资产交易平台的接口而�
 
 ```
 
+###websocket 使用例子
+```golang
+import (
+	"github.com/nntaoli-project/GoEx"
+	"github.com/nntaoli-project/GoEx/huobi"
+	//"github.com/nntaoli-project/GoEx/okcoin"
+	"log"
+)
+
+func main() {
+
+	//ws := okcoin.NewOKExFutureWs() //ok期货
+	ws := huobi.NewHbdmWs() //huobi期货
+	//设置回调函数
+	ws.SetCallbacks(func(ticker *goex.FutureTicker) {
+		log.Println(ticker)
+	}, func(depth *goex.Depth) {
+		log.Println(depth)
+	}, func(trade *goex.Trade, contract string) {
+		log.Println(contract, trade)
+	})
+	//订阅行情
+	ws.SubscribeTrade(goex.BTC_USDT, goex.NEXT_WEEK_CONTRACT)
+	ws.SubscribeDepth(goex.BTC_USDT, goex.QUARTER_CONTRACT, 5)
+	ws.SubscribeTicker(goex.BTC_USDT, goex.QUARTER_CONTRACT)
+}  
+
+```
+
 ### 注意事项
 1. 推荐使用GoLand开发。
 2. 推荐关闭自动格式化功能。
 3. 不建议对现已存在的文件进行重新格式化，这样会导致commit特别糟糕。
 4. 请用OrderID2这个字段代替OrderID
-
+5. 交流QQ群：574829125
 -----------------
 
 ### 欢迎为作者付一碗面钱
