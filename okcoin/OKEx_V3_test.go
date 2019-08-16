@@ -182,8 +182,8 @@ func TestOKEV3_GetContractValue(t *testing.T) {
 }
 
 func isEqualDiff(klines []FutureKline, seconds int64) bool {
-	for i := 0; i < len(klines) - 1; i ++ {
-		diff := klines[i + 1].Timestamp-klines[i].Timestamp
+	for i := 0; i < len(klines)-1; i++ {
+		diff := klines[i+1].Timestamp - klines[i].Timestamp
 		if diff != seconds {
 			return false
 		}

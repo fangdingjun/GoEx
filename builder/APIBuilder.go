@@ -3,6 +3,10 @@ package builder
 import (
 	"context"
 	"fmt"
+	"net"
+	"net/http"
+	"net/url"
+	"time"
 
 	. "github.com/fangdingjun/GoEx"
 	"github.com/fangdingjun/GoEx/bigone"
@@ -23,12 +27,6 @@ import (
 	"github.com/fangdingjun/GoEx/okex"
 	"github.com/fangdingjun/GoEx/poloniex"
 	"github.com/fangdingjun/GoEx/zb"
-
-	//"github.com/fangdingjun/GoEx/coin58"
-	"net"
-	"net/http"
-	"net/url"
-	"time"
 )
 
 type APIBuilder struct {

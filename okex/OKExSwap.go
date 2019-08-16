@@ -2,8 +2,8 @@ package okex
 
 import (
 	"fmt"
-	"github.com/google/uuid"
 	. "github.com/fangdingjun/GoEx"
+	"github.com/google/uuid"
 	"github.com/pkg/errors"
 	"log"
 	"strings"

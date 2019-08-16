@@ -3,8 +3,8 @@ package okex
 import (
 	"errors"
 	"fmt"
-	"github.com/google/uuid"
 	. "github.com/fangdingjun/GoEx"
+	"github.com/google/uuid"
 	"sort"
 	"strings"
 	"sync"

@@ -2,15 +2,14 @@ package okcoin
 
 import (
 	"fmt"
+	"github.com/fangdingjun/GoEx"
 	"github.com/stretchr/testify/assert"
 	"log"
-	"testing"
 	"sync"
-	"github.com/fangdingjun/GoEx"
+	"testing"
 )
 
-
-func newOKExV3FutureWs()*OKExV3FutureWs{
+func newOKExV3FutureWs() *OKExV3FutureWs {
 	okV3Ws := NewOKExV3FutureWs(okexV3)
 	okV3Ws.WsUrl("wss://okexcomreal.bafang.com:10442/ws/v3")
 	okV3Ws.ErrorHandleFunc(func(err error) {
@@ -51,7 +50,7 @@ func TestOKExV3FutureWsDepthCallback(t *testing.T) {
 		if len(depths) <= n {
 			t.Log(depth)
 			depths = append(depths, *depth)
-		} 
+		}
 		if len(depths) == n {
 			wg.Done()
 		}
@@ -70,7 +69,7 @@ func TestOKExV3FutureWsTradeCallback(t *testing.T) {
 		if len(trades) <= n {
 			t.Log(contractType, trade)
 			trades = append(trades, *trade)
-		} 
+		}
 		if len(trades) == n {
 			wg.Done()
 		}
@@ -125,7 +124,7 @@ func TestOKExV3FutureWsOrderCallback(t *testing.T) {
 			if len(orders) <= n {
 				t.Log(contractType, order)
 				orders = append(orders, *order)
-			} 
+			}
 			if len(orders) == n {
 				wg.Done()
 			}

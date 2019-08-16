@@ -2,8 +2,8 @@ package okex
 
 import (
 	"fmt"
-	"github.com/go-openapi/errors"
 	. "github.com/fangdingjun/GoEx"
+	"github.com/go-openapi/errors"
 	"sort"
 	"strings"
 	"time"

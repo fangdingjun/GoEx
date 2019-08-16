@@ -96,21 +96,5 @@ func main() {
 	ws.SubscribeTicker(goex.BTC_USDT, goex.QUARTER_CONTRACT)
 }  
 
-```
-### 更多文档
-
-[GoEx.TOP](https://goex.top)
-
-### 注意事项
-
-1. 推荐使用GoLand开发。
-2. 推荐关闭自动格式化功能。
-3. 不建议对现已存在的文件进行重新格式化，这样会导致commit特别糟糕。
-4. 请用OrderID2这个字段代替OrderID
-5. 请不要使用deprecated关键字标注的方法和字段，后面版本可能随时删除的
-6. 交流QQ群：574829125
------------------
-
-### 欢迎为作者付一碗面钱
-
-<img src="https://raw.githubusercontent.com/fangdingjun/GoEx/dev/wx_pay.JPG" width="250" alt="一碗面钱">&nbsp;&nbsp;&nbsp;<img src="https://raw.githubusercontent.com/fangdingjun/GoEx/dev/IMG_1177.jpg" width="250" alt="一碗面钱">
+###说明
+   fork from github.com/nntaoli-project/GoEx

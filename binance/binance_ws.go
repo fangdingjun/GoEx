@@ -3,8 +3,8 @@ package binance
 import (
 	"errors"
 	"fmt"
-	"github.com/json-iterator/go"
 	. "github.com/fangdingjun/GoEx"
+	"github.com/json-iterator/go"
 	"strings"
 	"time"
 	"unsafe"
