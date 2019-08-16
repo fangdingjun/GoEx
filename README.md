@@ -29,7 +29,9 @@ GoEx项目是为了统一并标准化各个数字资产交易平台的接口而�
 | btcchina.com | Y | Y | 1 |
 | coinbig.com | Y | Y | * |
 
-###安装GoEx库  ``` go get github.com/fangdingjun/GoEx ```
+### 安装GoEx库  
+
+``` go get github.com/fangdingjun/GoEx ```
 
 ### 例子
 
@@ -95,6 +97,8 @@ func main() {
 	ws.SubscribeDepth(goex.BTC_USDT, goex.QUARTER_CONTRACT, 5)
 	ws.SubscribeTicker(goex.BTC_USDT, goex.QUARTER_CONTRACT)
 }  
+```
 
-###说明
+### 说明
+
    fork from github.com/nntaoli-project/GoEx
