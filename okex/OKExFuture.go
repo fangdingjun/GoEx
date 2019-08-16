@@ -4,7 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"github.com/google/uuid"
-	. "github.com/nntaoli-project/GoEx"
+	. "github.com/fangdingjun/GoEx"
 	"sort"
 	"strings"
 	"sync"
