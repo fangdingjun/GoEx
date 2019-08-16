@@ -18,6 +18,8 @@ type Order struct {
 	Status     TradeStatus
 	Currency   CurrencyPair
 	Side       TradeSide
+	Type       string //limit / market
+	OrderType  int    //0:default,1:maker,2:fok,3:ioc
 }
 
 type Trade struct {
@@ -34,6 +36,22 @@ type SubAccount struct {
 	Amount       float64
 	ForzenAmount float64
 	LoanAmount   float64
+}
+
+type MarginSubAccount struct {
+	Balance     float64
+	Frozen      float64
+	Available   float64
+	CanWithdraw float64
+	Loan        float64
+	LendingFee  float64
+}
+
+type MarginAccount struct {
+	Sub              map[Currency]MarginSubAccount
+	LiquidationPrice float64
+	RiskRate         float64
+	MarginRatio      float64
 }
 
 type Account struct {
@@ -131,6 +149,7 @@ type FutureAccount struct {
 }
 
 type FutureOrder struct {
+	ClientOid    string //自定义ID，GoEx内部自动生成
 	OrderID2     string //请尽量用这个字段替代OrderID字段
 	Price        float64
 	Amount       float64
@@ -140,6 +159,7 @@ type FutureOrder struct {
 	OrderTime    int64
 	Status       TradeStatus
 	Currency     CurrencyPair
+	OrderType    int     //ORDINARY=0 POST_ONLY=1 FOK= 2 IOC= 3
 	OType        int     //1：开多 2：开空 3：平多 4： 平空
 	LeverRate    int     //倍数
 	Fee          float64 //手续费
@@ -163,4 +183,17 @@ type FuturePosition struct {
 	ContractType   string
 	ContractId     int64
 	ForceLiquPrice float64 //预估爆仓价
+}
+
+//api parameter struct
+
+type BorrowParameter struct {
+	CurrencyPair CurrencyPair
+	Currency     Currency
+	Amount       float64
+}
+
+type RepaymentParameter struct {
+	BorrowParameter
+	BorrowId string
 }
